@@ -71,10 +71,11 @@ INSERT INTO Applications (ApplicationID, JobID, ApplicantID, ApplicationDate, Co
 
 --5. Count the Number of Applications for Each Job Listing
 SELECT j.JobTitle, 
-       COALESCE(COUNT(a.ApplicationID), 0) AS ApplicationCount
+       COUNT(a.ApplicationID) AS ApplicationCount
 FROM Jobs j
 LEFT JOIN Applications a ON j.JobID = a.JobID
 GROUP BY j.JobTitle;
+
 
 --6. Retrieve Job Listings within a Salary Range
 SELECT j.JobTitle, c.CompanyName, j.JobLocation, j.Salary
