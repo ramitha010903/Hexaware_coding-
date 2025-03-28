@@ -88,8 +88,7 @@ SELECT j.JobTitle, c.CompanyName, a.ApplicationDate
 FROM Applications a
 JOIN Jobs j ON a.JobID = j.JobID
 JOIN Companies c ON j.CompanyID = c.CompanyID
-WHERE a.ApplicantID = 1
-ORDER BY a.ApplicationDate DESC;
+WHERE a.ApplicantID = 1;
 
 --8. Calculate and Display the Average Salary for All Job Listings (Excluding Zero Salary)
 SELECT AVG(Salary) AS AverageSalary
@@ -101,10 +100,8 @@ SELECT c.CompanyName, COUNT(j.JobID) AS JobCount
 FROM Jobs j
 JOIN Companies c ON j.CompanyID = c.CompanyID
 GROUP BY c.CompanyName
-HAVING COUNT(j.JobID) = (
-    SELECT MAX(JobCount) 
-    FROM (SELECT COUNT(JobID) AS JobCount FROM Jobs GROUP BY CompanyID) AS JobCounts
-);
+ORDER BY JobCount DESC
+LIMIT 1;
 
 --10. Find the applicants who have applied for positions in companies located in 'CityX' and have at least 3 years of experience.
 SELECT DISTINCT a.ApplicantID, a.FirstName, a.LastName, a.Email
