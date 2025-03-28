@@ -167,12 +167,11 @@ FULL OUTER JOIN Applications app ON a.ApplicantID = app.ApplicantID
 FULL OUTER JOIN Jobs j ON app.JobID = j.JobID;
 
 --20. List All Combinations of Applicants and Companies Where the Company is in a Specific City and the Applicant Has More Than 2 Years of Experience (Example: Chennai)
-SELECT a.FirstName, a.LastName, c.CompanyName
-FROM Applicants a
-CROSS JOIN Companies c
-WHERE c.Location = 'Chennai'
-AND (a.Resume LIKE '%3 years%' OR a.Resume LIKE '%4 years%' OR a.Resume LIKE '%5 years%' 
-     OR a.Resume LIKE '%more than 2 years%');
+SELECT a.FirstName,a.LastName,c.CompanyName
+FROM Applicants a,Companies c
+WHERE
+    c.Location = 'Chennai'
+    AND a.Resume LIKE '%more than 2 years%';
 
 
 
