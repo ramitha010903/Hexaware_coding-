@@ -126,9 +126,9 @@ WHERE a.ApplicationID IS NULL;
 
 --13. Retrieve a list of job applicants along with the companies they have applied to and the positions they have applied for.
 SELECT a.FirstName, a.LastName, c.CompanyName, j.JobTitle
-FROM Applications app
-JOIN Applicants a ON app.ApplicantID = a.ApplicantID
-JOIN Jobs j ON app.JobID = j.JobID
+FROM Applications A
+JOIN Applicants a ON A.ApplicantID = a.ApplicantID
+JOIN Jobs j ON A.JobID = j.JobID
 JOIN Companies c ON j.CompanyID = c.CompanyID;
 
 --14. Retrieve a list of companies along with the count of jobs they have posted, even if they have not received any applications.
